@@ -1,37 +1,4 @@
-# Remove o duckdb e mantém só o básico
-echo "Flask==2.3.3
+Flask==2.3.3
 Flask-SQLAlchemy==3.0.5
 python-dotenv==1.0.0
-gunicorn==21.2.0" > requirements.txt
-
-# Modifica o app.py para não tentar conectar no DuckDB
-# Cria uma versão simplificada sem database
-cat > app.py << 'EOF'
-from flask import Flask, render_template
-
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'dev-key-temporaria'
-
-@app.route('/')
-def dashboard():
-    return render_template('dashboard.html')
-
-@app.route('/mining')
-def mining():
-    return render_template('mining.html')
-
-@app.route('/analysis')
-def analysis():
-    return render_template('analysis.html')
-
-@app.route('/portfolios')
-def portfolios():
-    return render_template('portfolios.html')
-
-if __name__ == '__main__':
-    app.run(debug=True)
-EOF
-
-git add requirements.txt app.py
-git commit -m "deploy: layout only without database"
-git push origin main
+gunicorn==21.2.0
