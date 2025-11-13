@@ -1,5 +1,5 @@
+# app/utils/analysis.py
 import duckdb
-import pandas as pd
 from datetime import datetime
 
 class BitcoinAnalyzer:
