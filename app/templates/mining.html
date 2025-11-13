@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1><i class="fas fa-digging"></i> Mineração</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card metric-card">
+            <div class="card-body">
+                <h5>Lucro Diário</h5>
+                <h2>${{ "%.2f"|format(profitability.daily_profit_usd|default(0)) }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card metric-card">
+            <div class="card-body">
+                <h5>Margem</h5>
+                <h2>{{ "%.1f"|format(profitability.profit_margin_percentage|default(0)) }}%</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card metric-card">
+            <div class="card-body">
+                <h5>ROI</h5>
+                <h2>{{ profitability.roi_days|default(0) }} dias</h2>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

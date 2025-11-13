@@ -1,0 +1,53 @@
+{
+  "portfolios": {
+    "você_principal": {
+      "name": "Principal",
+      "owner": "Você",
+      "initial_investment": 1000,
+      "allocations": {
+        "BTC": {
+          "amount": 500,
+          "average_price": 65000,
+          "added_at": "2025-11-13T15:56:40.064772"
+        },
+        "ETH": {
+          "amount": 250,
+          "average_price": 3250,
+          "added_at": "2025-11-13T15:56:40.065782"
+        },
+        "LINK": {
+          "amount": 250,
+          "average_price": 19.5,
+          "added_at": "2025-11-13T15:56:40.065782"
+        }
+      },
+      "created_at": "2025-11-13T15:56:40.064772",
+      "last_updated": "2025-11-13T15:56:40.065782"
+    },
+    "carlos_trading": {
+      "name": "Trading",
+      "owner": "Carlos",
+      "initial_investment": 1000,
+      "allocations": {
+        "BTC": {
+          "amount": 500,
+          "average_price": 65000,
+          "added_at": "2025-11-13T15:56:40.067790"
+        },
+        "ETH": {
+          "amount": 250,
+          "average_price": 3250,
+          "added_at": "2025-11-13T15:56:40.067790"
+        },
+        "LINK": {
+          "amount": 250,
+          "average_price": 19.5,
+          "added_at": "2025-11-13T15:56:40.068795"
+        }
+      },
+      "created_at": "2025-11-13T15:56:40.066795",
+      "last_updated": "2025-11-13T15:56:40.068795"
+    }
+  },
+  "last_updated": "2025-11-13T15:56:40.068795"
+}

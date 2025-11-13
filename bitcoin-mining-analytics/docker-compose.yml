@@ -1,0 +1,45 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: bitcoin_mining
+      POSTGRES_USER: miner
+      POSTGRES_PASSWORD: mining123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  airflow:
+    build:
+      context: .
+      dockerfile: infrastructure/docker/Dockerfile.airflow
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://miner:mining123@postgres:5432/bitcoin_mining
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./infrastructure/airflow/dags:/opt/airflow/dags
+      - ./data:/opt/airflow/data
+    depends_on:
+      - postgres
+
+  grafana:
+    image: grafana/grafana:9.5.0
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./infrastructure/monitoring/grafana_dashboard.json:/etc/grafana/provisioning/dashboards/dashboard.json
+
+volumes:
+  postgres_data:

@@ -1,0 +1,4 @@
+id,timestamp,network_metrics_id,miner_model,miner_hashrate_th,miner_power_w,energy_cost_per_kwh,daily_revenue_usd,daily_energy_cost_usd,daily_profit_usd,profit_margin_percentage,roi_days,break_even_days,monthly_profit_usd,annual_profit_usd,status
+1,2025-11-13 14:50:09.260065,1,S19 XP,,,,15.5,5.78,9.72,62.7,450.0,,,,PROFIT
+2,2025-11-13 14:58:26.821356,2,Antminer S19 XP,,,,11.541239458653958,5.7791999999999994,5.762039458653959,49.92565555282204,780.9734786250878,,,,PROFIT
+3,2025-11-13 15:01:30.707609,3,S19 XP,,,,15.5,5.78,9.72,62.7,450.0,,,,PROFIT

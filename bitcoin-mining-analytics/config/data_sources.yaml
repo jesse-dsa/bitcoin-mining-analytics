@@ -1,0 +1,73 @@
+# config/data_sources.yaml
+# Configurações de fontes de dados para Bitcoin Mining Analytics
+
+# Blockchain Data Sources
+blockchain_data:
+  blockchair:
+    base_url: "https://api.blockchair.com/bitcoin"
+    endpoints:
+      stats: "/stats"
+      blocks: "/blocks"
+      transactions: "/transactions"
+      mempool: "/mempool"
+    rate_limit: 10
+    api_key_required: false
+    timeout: 30
+
+  mempool_space:
+    base_url: "https://mempool.space/api"
+    endpoints:
+      stats: "/v1/blocks"
+      fees: "/v1/fees/recommended"
+      mempool: "/v1/mempool"
+    rate_limit: 15
+    api_key_required: false
+    timeout: 30
+
+  blockchain_com:
+    base_url: "https://api.blockchain.com/v3"
+    endpoints:
+      stats: "/exchangerates"
+      mining: "/mining"
+    rate_limit: 5
+    api_key_required: false
+    timeout: 30
+
+# Mining Data Sources
+mining_data:
+  btc_com:
+    base_url: "https://pool.api.btc.com/v1"
+    endpoints:
+      pool_stats: "/stats"
+      miner_stats: "/miner"
+    rate_limit: 5
+    api_key_required: false
+    timeout: 30
+
+# Market Data Sources
+market_data:
+  coingecko:
+    base_url: "https://api.coingecko.com/api/v3"
+    endpoints:
+      simple_price: "/simple/price"
+      market_chart: "/coins/bitcoin/market_chart"
+    rate_limit: 10
+    api_key_required: false
+    timeout: 30
+
+# Energy Data Sources
+energy_data:
+  eia_gov:
+    base_url: "https://api.eia.gov/v2"
+    endpoints:
+      electricity: "/electricity"
+    rate_limit: 5
+    api_key_required: true
+    timeout: 30
+
+# Default Data Source Priorities
+default_sources:
+  blockchain: "blockchair"
+  mining: "btc_com"
+  market: "coingecko"
+  energy: "eia_gov"

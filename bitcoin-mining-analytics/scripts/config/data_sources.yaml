@@ -1,0 +1,30 @@
+blockchain_data:
+  blockchair:
+    api_key_required: false
+    base_url: https://api.blockchair.com/bitcoin
+    endpoints:
+      blocks: /blocks?limit=1
+      mempool: /mempool
+      stats: /stats
+      transactions: /transactions
+    rate_limit: 10
+    timeout: 30
+  mempool_space:
+    api_key_required: false
+    base_url: https://mempool.space/api
+    endpoints:
+      fees: /v1/fees/recommended
+      mempool: /v1/mempool
+    rate_limit: 15
+    timeout: 30
+default_sources:
+  blockchain: blockchair
+  market: coingecko
+market_data:
+  coingecko:
+    api_key_required: false
+    base_url: https://api.coingecko.com/api/v3
+    endpoints:
+      simple_price: /simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true
+    rate_limit: 10
+    timeout: 30

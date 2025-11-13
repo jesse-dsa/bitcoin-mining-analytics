@@ -1,0 +1,117 @@
+# config/mining_parameters.yaml
+# Parâmetros de hardware e configurações de mineração
+
+# ASIC Mining Hardware Specifications
+asic_models:
+  antminer_s19_xp:
+    name: "Bitmain Antminer S19 XP"
+    hash_rate: 140
+    hash_rate_unit: "TH/s"
+    power_consumption: 3010
+    power_unit: "W"
+    efficiency: 21.5
+    efficiency_unit: "J/TH"
+    cost: 4500
+    cost_unit: "USD"
+    release_year: 2022
+    lifespan_months: 24
+    noise_level: 75
+    weight: 14.2
+
+  antminer_s19j_pro:
+    name: "Bitmain Antminer S19j Pro"
+    hash_rate: 104
+    hash_rate_unit: "TH/s"
+    power_consumption: 3068
+    power_unit: "W"
+    efficiency: 29.5
+    efficiency_unit: "J/TH"
+    cost: 3200
+    cost_unit: "USD"
+    release_year: 2021
+    lifespan_months: 24
+    noise_level: 75
+    weight: 13.2
+
+  whatsminer_m50:
+    name: "MicroBT Whatsminer M50"
+    hash_rate: 118
+    hash_rate_unit: "TH/s"
+    power_consumption: 3276
+    power_unit: "W"
+    efficiency: 27.8
+    efficiency_unit: "J/TH"
+    cost: 3800
+    cost_unit: "USD"
+    release_year: 2022
+    lifespan_months: 24
+    noise_level: 75
+    weight: 14.5
+
+  antminer_s17:
+    name: "Bitmain Antminer S17"
+    hash_rate: 56
+    hash_rate_unit: "TH/s"
+    power_consumption: 2520
+    power_unit: "W"
+    efficiency: 45
+    efficiency_unit: "J/TH"
+    cost: 1500
+    cost_unit: "USD"
+    release_year: 2019
+    lifespan_months: 18
+    noise_level: 76
+    weight: 9.6
+
+# Energy Cost Scenarios
+energy_costs:
+  industrial_rate:
+    scenario: "Industrial Rate"
+    cost_per_kwh: 0.08
+    currency: "USD"
+    region: "Global Average"
+    description: "Industrial electricity rate"
+
+  renewable_rate:
+    scenario: "Renewable Energy"
+    cost_per_kwh: 0.12
+    currency: "USD"
+    region: "Global Average"
+    description: "Commercial renewable energy rate"
+
+  residential_rate:
+    scenario: "Residential Rate"
+    cost_per_kwh: 0.15
+    currency: "USD"
+    region: "Global Average"
+    description: "Residential electricity rate"
+
+  offpeak_discount:
+    scenario: "Off-Peak Discount"
+    discount_percentage: 30
+    description: "30% discount during off-peak hours"
+
+# Operational Parameters
+operational_parameters:
+  cooling_cost_multiplier: 1.15
+  maintenance_cost_per_month: 50
+  hosting_fee_per_th_per_month: 0.15
+  internet_cost_per_month: 100
+  labor_cost_per_month: 200
+  facility_cost_per_month: 500
+
+# Network Parameters
+network_parameters:
+  block_reward: 6.25
+  block_time_target: 600
+  difficulty_adjustment_blocks: 2016
+  halving_blocks: 210000
+  transaction_fee_ratio: 0.05
+
+# Default Mining Setup
+default_mining_operation:
+  hardware_model: "antminer_s19_xp"
+  units: 10
+  energy_cost_scenario: "industrial_rate"
+  location: "Global Average"
+  operational_days_per_year: 365

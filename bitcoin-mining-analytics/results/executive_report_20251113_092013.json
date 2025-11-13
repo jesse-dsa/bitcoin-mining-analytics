@@ -1,0 +1,21 @@
+{
+  "timestamp": "20251113_092013",
+  "data_quality": "REAL_TIME",
+  "summary": {
+    "profitability_status": "HIGH",
+    "mining_viability": "GOOD",
+    "market_condition": "bearish",
+    "network_health": "HEALTHY"
+  },
+  "key_metrics": {
+    "profit_margin_percent": 99.9,
+    "daily_profit_per_th_usd": 80.85,
+    "hash_price_usd": 80.91,
+    "network_efficiency_score": 40.0,
+    "break_even_energy_price": "$112.37/kWh"
+  },
+  "recommendations": [
+    "\u2705 Alta profitability - considere expandir opera\u00e7\u00e3o",
+    "\ud83d\udd27 Efici\u00eancia baixa - avalie upgrade de hardware"
+  ]
+}

@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1><i class="fas fa-wallet"></i> Portfolios</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Criar Portfolio</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/portfolios/create">
+                    <div class="mb-3">
+                        <label class="form-label">Nome</label>
+                        <input type="text" class="form-control" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Proprietário</label>
+                        <input type="text" class="form-control" name="owner" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Investimento Inicial</label>
+                        <input type="number" class="form-control" name="initial_investment" step="0.01" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Criar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Adicionar Investimento</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="#" id="investmentForm">
+                    <div class="mb-3">
+                        <label class="form-label">Portfolio</label>
+                        <select class="form-control" name="portfolio_id" required>
+                            <option value="">Selecione...</option>
+                            {% for id, portfolio in portfolios.items() %}
+                            <option value="{{ id }}">{{ portfolio.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Ativo</label>
+                        <select class="form-control" name="asset" required>
+                            <option value="BTC">BTC</option>
+                            <option value="ETH">ETH</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Valor (USD)</label>
+                        <input type="number" class="form-control" name="amount" step="0.01" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>Meus Portfolios</h5>
+            </div>
+            <div class="card-body">
+                {% if portfolios %}
+                    {% for id, portfolio in portfolios.items() %}
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <h5>{{ portfolio.name }} ({{ portfolio.owner }})</h5>
+                            <p>Valor: ${{ "%.2f"|format(portfolio_manager.calculate_portfolio_value(portfolio)) }}</p>
+                            {% if portfolio.allocations %}
+                                <h6>Alocações:</h6>
+                                {% for asset, alloc in portfolio.allocations.items() %}
+                                <span class="badge bg-secondary">{{ asset }}: ${{ "%.2f"|format(alloc.amount) }}</span>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Nenhum portfolio criado.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.querySelector('select[name="portfolio_id"]').addEventListener('change', function() {
+    const form = document.getElementById('investmentForm');
+    const portfolioId = this.value;
+    form.action = '/portfolios/' + portfolioId + '/add-investment';
+});
+</script>
+{% endblock %}

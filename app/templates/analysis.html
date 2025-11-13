@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1><i class="fas fa-chart-line"></i> Análise</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Métricas da Rede</h5>
+            </div>
+            <div class="card-body">
+                {% if metrics %}
+                <p><strong>Preço:</strong> ${{ "%.2f"|format(metrics.market_price_usd) }}</p>
+                <p><strong>Hash Rate:</strong> {{ "%.1f"|format(metrics.hashrate_24h_ehs) }} EH/s</p>
+                <p><strong>Dificuldade:</strong> {{ "{:,}".format(metrics.difficulty) }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Análise</h5>
+            </div>
+            <div class="card-body">
+                {% if analysis %}
+                <p><strong>Tendência:</strong> {{ analysis.price_analysis.trend }}</p>
+                <p><strong>Saúde:</strong> {{ analysis.network_health.health }}</p>
+                <p><strong>Recomendação:</strong> {{ analysis.investment_recommendation.action }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

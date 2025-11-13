@@ -1,0 +1,90 @@
+
+@startuml BitcoinMiningAnalytics_DER
+
+skinparam groupInheritance 2
+skinparam linetype ortho
+skinparam nodesep 50
+skinparam ranksep 50
+
+' Definir entidades
+
+entity "BITCOIN_NETWORK_METRICS" {
+  **id** : INTEGER
+  timestamp : TIMESTAMP
+  data_source : STRING
+  blocks : INTEGER
+  transactions : INTEGER
+  outputs : INTEGER
+  circulation : INTEGER
+  blocks_24h : INTEGER
+  transactions_24h : INTEGER
+  volume_24h : INTEGER
+  difficulty : FLOAT
+  hashrate_24h_hs : FLOAT
+  hashrate_24h_ehs : FLOAT
+  hashrate_24h_phs : FLOAT
+  mempool_transactions : INTEGER
+  mempool_size : INTEGER
+  mempool_tps : FLOAT
+  average_transaction_fee_24h : INTEGER
+  median_transaction_fee_24h : INTEGER
+  average_transaction_fee_usd_24h : FLOAT
+  suggested_transaction_fee_per_byte_sat : INTEGER
+  market_price_usd : FLOAT
+  market_cap_usd : FLOAT
+  market_dominance_percentage : FLOAT
+  blockchain_size : INTEGER
+  nodes : INTEGER
+  hodling_addresses : INTEGER
+  next_difficulty_estimate : FLOAT
+  data_hash : STRING
+  raw_data : JSON
+}
+
+entity "BITCOIN_SNAPSHOTS" {
+  **id** : INTEGER
+  timestamp : TIMESTAMP
+  snapshot_type : STRING
+  data_source : STRING
+  snapshot_data : JSON
+  data_hash : STRING
+}
+
+entity "MINING_METRICS" {
+  **id** : INTEGER
+  timestamp : TIMESTAMP
+  network_metrics_id : INTEGER [FK]
+  hashrate_ehs : FLOAT
+  hashrate_phs : FLOAT
+  daily_blocks : INTEGER
+  block_time_actual : FLOAT
+  daily_network_revenue_usd : FLOAT
+  hash_price_usd_per_th_per_day : FLOAT
+  network_efficiency_j_per_th : FLOAT
+  estimated_daily_energy_consumption_gwh : FLOAT
+}
+
+entity "PROFITABILITY_ANALYSIS" {
+  **id** : INTEGER
+  timestamp : TIMESTAMP
+  network_metrics_id : INTEGER [FK]
+  miner_model : STRING
+  miner_hashrate_th : FLOAT
+  miner_power_w : FLOAT
+  energy_cost_per_kwh : FLOAT
+  daily_revenue_usd : FLOAT
+  daily_energy_cost_usd : FLOAT
+  daily_profit_usd : FLOAT
+  profit_margin_percentage : FLOAT
+  roi_days : FLOAT
+  break_even_days : FLOAT
+  monthly_profit_usd : FLOAT
+  annual_profit_usd : FLOAT
+  status : STRING
+}
+
+' Relacionamentos
+MINING_METRICS ||--o| BITCOIN_NETWORK_METRICS : "network_metrics_id"
+PROFITABILITY_ANALYSIS ||--o| BITCOIN_NETWORK_METRICS : "network_metrics_id"
+
+@enduml
