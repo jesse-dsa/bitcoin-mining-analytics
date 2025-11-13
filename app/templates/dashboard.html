@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
+        <p class="text-muted">Última atualização: {{ current_time }}</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="card metric-card">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-coins"></i> Preço BTC</h5>
+                <h2>${{ "%.2f"|format(metrics.market_price_usd|default(0)) }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card metric-card">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-bolt"></i> Hash Rate</h5>
+                <h2>{{ "%.1f"|format(metrics.hashrate_24h_ehs|default(0)) }} EH/s</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card metric-card">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-exchange-alt"></i> Transações</h5>
+                <h2>{{ "{:,}".format(metrics.transactions_24h|default(0)) }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card metric-card">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-layer-group"></i> Mempool</h5>
+                <h2>{{ "{:,}".format(metrics.mempool_transactions|default(0)) }}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5>Análise do Mercado</h5>
+            </div>
+            <div class="card-body">
+                {% if analysis %}
+                    <p><strong>Tendência:</strong> {{ analysis.price_analysis.trend }}</p>
+                    <p><strong>Saúde da Rede:</strong> {{ analysis.network_health.health }}</p>
+                    <p><strong>Mineração:</strong> {{ analysis.mining_economics.status }}</p>
+                    <p><strong>Recomendação:</strong> {{ analysis.investment_recommendation.action }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
