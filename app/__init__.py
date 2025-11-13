@@ -1,19 +1,17 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from config import config
 
 db = SQLAlchemy()
 
-def create_app(config_name='default'):
+def create_app():
     app = Flask(__name__)
-    app.config.from_object(config[config_name])
+    app.config['SECRET_KEY'] = 'dev-key-temporaria'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)
 
     from app.routes import main_bp
     app.register_blueprint(main_bp)
-
-    with app.app_context():
-        db.create_all()
 
     return app
